@@ -1,7 +1,7 @@
 QuickFIX/Go
 ===========
 
-[![GoDoc](https://godoc.org/github.com/quickfixgo/quickfix?status.png)](https://godoc.org/github.com/quickfixgo/quickfix) [![Build Status](https://travis-ci.org/quickfixgo/quickfix.svg?branch=master)](https://travis-ci.org/quickfixgo/quickfix) [![Go Report Card](https://goreportcard.com/badge/github.com/quickfixgo/quickfix)](https://goreportcard.com/report/github.com/quickfixgo/quickfix)
+[![GoDoc](https://godoc.org/github.com/space307/quickfix?status.png)](https://godoc.org/github.com/space307/quickfix) [![Build Status](https://travis-ci.org/space307/quickfix.svg?branch=master)](https://travis-ci.org/space307/quickfix) [![Go Report Card](https://goreportcard.com/badge/github.com/space307/quickfix)](https://goreportcard.com/report/github.com/space307/quickfix)
 
 - Website: http://www.quickfixgo.org
 - Mailing list: [Google Groups](https://groups.google.com/forum/#!forum/quickfixgo)
@@ -12,40 +12,40 @@ Getting Started and Documentation
 ---------------------------------
 
 * [User Manual](http://quickfixgo.org/docs)
-* [API Documentation](https://godoc.org/github.com/quickfixgo/quickfix)
+* [API Documentation](https://godoc.org/github.com/space307/quickfix)
 
 ### Installation
 
 To install QuickFIX/Go, use `go get`:
 
 ```sh
-$ go get github.com/quickfixgo/quickfix
+$ go get github.com/space307/quickfix
 ```
 
 ### Staying up to date
 
-To update QuickFIX/Go to the latest version, use `go get -u github.com/quickfixgo/quickfix`.
+To update QuickFIX/Go to the latest version, use `go get -u github.com/space307/quickfix`.
 
 ### Example Apps
 
-See [examples](https://github.com/quickfixgo/examples) for some simple examples of using QuickFIX/Go.
+See [examples](https://github.com/space307/examples) for some simple examples of using QuickFIX/Go.
 
 ### FIX Message Generation
 
 QuickFIX/Go includes separate packages for tags, fields, enums, messages, and message components generated from the FIX 4.0 - FIX5.0SP2 specs. See:
 
-* [github.com/quickfixgo/tag](https://github.com/quickfixgo/tag)
-* [github.com/quickfixgo/field](https://github.com/quickfixgo/field)
-* [github.com/quickfixgo/enum](https://github.com/quickfixgo/enum)
-* [github.com/quickfixgo/fix40](https://github.com/quickfixgo/fix40)
-* [github.com/quickfixgo/fix41](https://github.com/quickfixgo/fix41)
-* [github.com/quickfixgo/fix42](https://github.com/quickfixgo/fix42)
-* [github.com/quickfixgo/fix43](https://github.com/quickfixgo/fix43)
-* [github.com/quickfixgo/fix44](https://github.com/quickfixgo/fix44)
-* [github.com/quickfixgo/fix50](https://github.com/quickfixgo/fix50)
-* [github.com/quickfixgo/fix50sp1](https://github.com/quickfixgo/fix50sp1)
-* [github.com/quickfixgo/fix50sp2](https://github.com/quickfixgo/fix50sp2)
-* [github.com/quickfixgo/fixt11](https://github.com/quickfixgo/fixt11)
+* [github.com/space307/tag](https://github.com/space307/tag)
+* [github.com/space307/field](https://github.com/space307/field)
+* [github.com/space307/enum](https://github.com/space307/enum)
+* [github.com/space307/fix40](https://github.com/space307/fix40)
+* [github.com/space307/fix41](https://github.com/space307/fix41)
+* [github.com/space307/fix42](https://github.com/space307/fix42)
+* [github.com/space307/fix43](https://github.com/space307/fix43)
+* [github.com/space307/fix44](https://github.com/space307/fix44)
+* [github.com/space307/fix50](https://github.com/space307/fix50)
+* [github.com/space307/fix50sp1](https://github.com/space307/fix50sp1)
+* [github.com/space307/fix50sp2](https://github.com/space307/fix50sp2)
+* [github.com/space307/fixt11](https://github.com/space307/fixt11)
 
 For most FIX applications, these generated resources are sufficient. Custom FIX applications may generate source specific to the FIX spec of that application using the `generate-fix` tool included with QuickFIX/Go.
 
@@ -128,4 +128,4 @@ Note that to specify a specific revision, you can manually edit the `go.mod` fil
 Licensing
 ---------
 
-This software is available under the QuickFIX Software License. Please see the [LICENSE.txt](https://github.com/quickfixgo/quickfix/blob/master/LICENSE.txt) for the terms specified by the QuickFIX Software License.
+This software is available under the QuickFIX Software License. Please see the [LICENSE.txt](https://github.com/space307/quickfix/blob/master/LICENSE.txt) for the terms specified by the QuickFIX Software License.

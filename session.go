@@ -7,8 +7,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/quickfixgo/quickfix/datadictionary"
-	"github.com/quickfixgo/quickfix/internal"
+	"github.com/sirupsen/logrus"
+	"github.com/space307/quickfix/datadictionary"
+	"github.com/space307/quickfix/internal"
 )
 
 //The Session is the primary FIX abstraction for message communication
@@ -77,6 +78,7 @@ func (s *session) connect(msgIn <-chan fixIn, msgOut chan<- []byte) error {
 type stopReq struct{}
 
 func (s *session) stop() {
+	fmt.Print("session stop")
 	s.admin <- stopReq{}
 }
 
@@ -693,7 +695,7 @@ func (s *session) onAdmin(msg interface{}) {
 	switch msg := msg.(type) {
 
 	case connect:
-
+		logrus.Info("session: connect")
 		if s.IsConnected() {
 			if msg.err != nil {
 				msg.err <- errors.New("Already connected")
@@ -713,9 +715,11 @@ func (s *session) onAdmin(msg interface{}) {
 		s.Connect(s)
 
 	case stopReq:
+		logrus.Info("session: stopReq")
 		s.Stop(s)
 
 	case waitForInSessionReq:
+		logrus.Info("session: waitForInSessionReq")
 		if !s.IsSessionTime() {
 			msg.rep <- s.stateMachine.notifyOnInSessionTime
 		}
@@ -726,8 +730,20 @@ func (s *session) onAdmin(msg interface{}) {
 func (s *session) run() {
 	s.Start(s)
 
-	s.stateTimer = internal.NewEventTimer(func() { s.sessionEvent <- internal.NeedHeartbeat })
-	s.peerTimer = internal.NewEventTimer(func() { s.sessionEvent <- internal.PeerTimeout })
+	s.stateTimer = internal.NewEventTimer(func() {
+		select {
+		case s.sessionEvent <- internal.NeedHeartbeat:
+		case <-time.After(5 * time.Second):
+			logrus.Info("session: NeedHeartbeat after case")
+		}
+	})
+	s.peerTimer = internal.NewEventTimer(func() {
+		select {
+		case s.sessionEvent <- internal.PeerTimeout:
+		case <-time.After(5 * time.Second):
+			logrus.Info("session: PeerTimeout after case")
+		}
+	})
 	ticker := time.NewTicker(time.Second)
 
 	defer func() {
@@ -759,4 +775,5 @@ func (s *session) run() {
 			s.CheckSessionTime(s, now)
 		}
 	}
+	logrus.Info("session: return from run")
 }

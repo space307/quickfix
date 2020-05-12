@@ -4,7 +4,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/quickfixgo/quickfix/internal"
+	"github.com/sirupsen/logrus"
+	"github.com/space307/quickfix/internal"
 )
 
 type stateMachine struct {
@@ -148,8 +149,10 @@ func (sm *stateMachine) setState(session *session, nextState sessionState) {
 		}
 
 		if sm.pendingStop {
+			logrus.Info("session_state: set state stopped")
 			sm.stopped = true
 			sm.notifyInSessionTime()
+			logrus.Info("session_state: after notifyInSessionTime")
 		}
 	}
 

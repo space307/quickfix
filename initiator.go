@@ -7,6 +7,7 @@ import (
 	"sync"
 	"time"
 
+	"github.com/sirupsen/logrus"
 	"golang.org/x/net/proxy"
 )
 
@@ -26,6 +27,7 @@ type Initiator struct {
 
 //Start Initiator.
 func (i *Initiator) Start() (err error) {
+	logrus.Info("Initiator Start")
 	i.stopChan = make(chan interface{})
 
 	for sessionID, settings := range i.sessionSettings {
@@ -59,6 +61,7 @@ func (i *Initiator) Stop() {
 	default:
 	}
 	close(i.stopChan)
+	logrus.Info("Initiator stop before wait")
 	i.wg.Wait()
 }
 
@@ -103,6 +106,7 @@ func (i *Initiator) waitForInSessionTime(session *session) bool {
 	select {
 	case <-inSessionTime:
 	case <-i.stopChan:
+		logrus.Info("Initiator waitForInSessionTime stopChan")
 		return false
 	}
 
@@ -114,6 +118,7 @@ func (i *Initiator) waitForReconnectInterval(reconnectInterval time.Duration) bo
 	select {
 	case <-time.After(reconnectInterval):
 	case <-i.stopChan:
+		logrus.Info("Initiator waitForReconnectInterval stopChan")
 		return false
 	}
 
@@ -188,7 +193,10 @@ func (i *Initiator) handleConnection(session *session, tlsConfig *tls.Config, di
 
 		select {
 		case <-disconnected:
+			logrus.Info("Initiator handleConnection disconnected")
+			return
 		case <-i.stopChan:
+			logrus.Info("Initiator handleConnection stopChan")
 			return
 		}
 

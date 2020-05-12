@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/quickfixgo/quickfix/datadictionary"
+	"github.com/space307/quickfix/datadictionary"
 	"github.com/stretchr/testify/suite"
 )
 

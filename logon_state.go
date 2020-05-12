@@ -3,7 +3,7 @@ package quickfix
 import (
 	"bytes"
 
-	"github.com/quickfixgo/quickfix/internal"
+	"github.com/space307/quickfix/internal"
 )
 
 type logonState struct{ connectedNotLoggedOn }
