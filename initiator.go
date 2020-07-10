@@ -194,7 +194,6 @@ func (i *Initiator) handleConnection(session *session, tlsConfig *tls.Config, di
 		select {
 		case <-disconnected:
 			logrus.Info("Initiator handleConnection disconnected")
-			return
 		case <-i.stopChan:
 			logrus.Info("Initiator handleConnection stopChan")
 			return
